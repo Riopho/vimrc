@@ -40,7 +40,7 @@ Plugin 'guns/xterm-color-table.vim'
 " 文件模糊查找
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_by_filename = 0
-"let g:ctrlp_map = '<Leader>n'
+let g:ctrlp_map = '<Leader>r'
 let g:ctrlp_working_path_mode = 'ra'
 nmap <Leader>n :CtrlP /home/rio/trunk/src<CR>
 
@@ -51,6 +51,7 @@ let g:airline_section_z=''
 let g:airline_section_y=''
 let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 
 " tag增强
 Plugin 'majutsushi/tagbar'
@@ -64,6 +65,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/nerdcommenter'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -212,3 +214,9 @@ nmap <Leader>jd :cs find g <c-R><c-W><CR>
 
 " 刷新显示 取消搜索高亮
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> 
+nnoremap <C-l> :bnext<CR>
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-k> :cp<CR>
+nnoremap <C-j> :cn<CR>
+nnoremap <Leader>k :lp<CR>
+nnoremap <Leader>j :lne<CR>
