@@ -18,6 +18,9 @@ Plugin 'Valloric/YouCompleteMe'
 "nmap <Leader>jd :YcmCompleter GoTo<CR>
 nmap <Leader>vd <c-W><c-V>:YcmCompleter GoTo<CR>
 nmap <Leader>sd <c-W><c-S>:YcmCompleter GoTo<CR>
+nmap <Leader>dj :YcmCompleter GoTo<CR>
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+
 let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_max_num_candidates = 8
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -42,7 +45,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_by_filename = 0
 let g:ctrlp_map = '<Leader>r'
 let g:ctrlp_working_path_mode = 'ra'
-nmap <Leader>n :CtrlP /home/rio/trunk/src<CR>
 
 " 状态栏增强
 Plugin 'bling/vim-airline'
@@ -65,7 +67,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+
+" 注释
 Plugin 'scrooloose/nerdcommenter'
+map <Leader>ci :call NERDComment(0, 'invert')<CR>
+let g:NERDCreateDefaultMappings = 0
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -92,12 +99,14 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line" 显示行号
+
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,GB2312
 
 " set encoding=utf8,utf-8
 set helplang=cn
 set number
+
 " tab 为 4 格
 set tabstop=4
 set shiftwidth=4
@@ -115,6 +124,7 @@ set backspace=indent,eol,start
 " 插入模式下 Ctrl + E == ESC
 imap <C-E> <ESC>
 set report=1
+
 " 忽略大小写搜索
 " set ignorecase
 
@@ -127,6 +137,7 @@ set hls
 " 不创建备份文件
 set nobackup
 set nowritebackup
+
 " 不创建临时文件
 set noswapfile
 
@@ -134,51 +145,6 @@ set noswapfile
 map <C-]> :tselect <C-R>=expand("<cword>")<CR><CR>
 map <C-]> g<C-]>
 
-" F4功能键映射为添加作者信息的快捷键
-map <F4> ms:call AddTitle()<cr>'s
-
-set helplang=cn
-
-function AddTitle()
-
-    call append(0,"/*******************************************************************************")
-
-    "call append(1,"#")
-
-    call append(1," * Author :          rio")
-
-    "call append(3,"#")
-
-    call append(2," * Email :           rio@xlcwnet.com")
-
-    "call append(5,"*")
-
-    call append(3," * Last modified :   ".strftime("%Y-%m-%d %H:%M"))
-
-    "call append(7,"#")
-
-    call append(4," * Filename :        ".expand("%:t"))
-
-    "call append(9,"#")
-
-    call append(5," * Description :     ")
-
-    ""call append(11,"#")
-
-    call append(6," * *****************************************************************************/")
-
-    echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
-
-endf
-
-" F4功能键映射为添加作者信息的快捷键
-
-
-
-" tlist 配置 
-" 默认打开Taglist 
-" let Tlist_Auto_Open=1 
-" let Tlist_Ctags_Cmd = '/usr/bin/ctags' 
 " 不同时显示多个文件的tag，只显示当前文件的 
 let Tlist_Show_One_File = 1 
 " 如果taglist窗口是最后一个窗口，则退出vim 
@@ -192,31 +158,35 @@ nmap <F11> :TlistUpdate<cr>:BottomExplorerWindow<cr><F5><c-w><c-b>
 let g:winManagerWindowLayout='TagList|FileExplorer'
 
 
-" alias grep
-set grepprg=grep\ -nr\ --exclude-dir=\.svn\ --exclude=*\.o\ --exclude=tags
 
 syntax enable
 set t_Co=256
 set background=dark
+
 " 主题
 colorscheme desert_rio
 
-nmap <Leader>cs <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/protocol/cs/**<CR>
-nmap <Leader>ss <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/protocol/ss/**<CR>
-nmap <Leader>lua :lv /<c-R><c-W>/ /home/rio/trunk/src/gamesvr/script/**<CR>
-nmap <Leader>game <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/src/gamesvr/**<CR>
-nmap <Leader>room <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/src/roomsvr/**<CR>
 "
 " cscope use quickfix
 set cscopequickfix=s-,g-,c-,d-,i-,t-,e-,f-
-cs add /home/rio/trunk/src/cscope.out
 nmap <Leader>jd :cs find g <c-R><c-W><CR> 
 
 " 刷新显示 取消搜索高亮
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> 
+nnoremap <silent> <C-i> :<C-u>nohlsearch<CR>
+
+" 缓冲区 quickfixlist locatelist跳转
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprev<CR>
 nnoremap <C-k> :cp<CR>
 nnoremap <C-j> :cn<CR>
 nnoremap <Leader>k :lp<CR>
 nnoremap <Leader>j :lne<CR>
+
+set wildignore=cscope.*,*.o,*.so,*.a,*.obj,Makefile,makefile,lua,luac
+
+" alias grep
+set grepprg=grep\ -nr\ --exclude-dir=\.svn\ --exclude=*\.o\ --exclude=tags
+
+" vimrc配置分项目管理
+auto bufread /home/rio/lua-5.1.5/src/* so /home/rio/lua-5.1.5/src/.vimrc
+auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
