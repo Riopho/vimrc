@@ -33,6 +33,7 @@ let g:ycm_confirm_extra_conf = 0
 " 括号匹配
 Plugin 'vim-scripts/delimitMate.vim'
 let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
 
 " YCM配置自动生成
 Plugin 'rdnetto/YCM-Generator'
@@ -169,10 +170,10 @@ colorscheme desert_rio
 "
 " cscope use quickfix
 set cscopequickfix=s-,g-,c-,d-,i-,t-,e-,f-
-nmap <Leader>jd :cs find g <c-R><c-W><CR> 
+nmap <Leader>dk :cs find g <c-R><c-W><CR> 
 
 " 刷新显示 取消搜索高亮
-nnoremap <silent> <C-i> :<C-u>nohlsearch<CR>
+nnoremap <silent> <C-p> :<C-u>nohlsearch<CR>
 
 " 缓冲区 quickfixlist locatelist跳转
 nnoremap <C-l> :bnext<CR>
