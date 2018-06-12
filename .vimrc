@@ -7,7 +7,6 @@ let g:mapleader=' '
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"
 " 插件管理
 Plugin 'VundleVim/Vundle.vim'
 
@@ -61,6 +60,7 @@ Plugin 'scrooloose/nerdtree'
 map <Leader>f :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
+" 代码片段插入
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -95,12 +95,6 @@ set showmatch
 " 退格键
 set backspace=indent,eol,start
 
-" 忽略大小写搜索
-" set ignorecase
-
-" 不能忽略大小下搜索
-" set noic
-
 " 搜索时高亮 : hls = high light search
 set hls
 
@@ -111,29 +105,20 @@ set nowritebackup
 " 不创建临时文件
 set noswapfile
 
-" 列表显示所有符合条件的标识符 
-map <C-]> :tselect <C-R>=expand("<cword>")<CR><CR>
-map <C-]> g<C-]>
-
-" 不同时显示多个文件的tag，只显示当前文件的 
-let Tlist_Show_One_File = 1 
 " 如果taglist窗口是最后一个窗口，则退出vim 
 let Tlist_Exit_OnlyWindow = 1 
 " 在右侧窗口中显示taglist窗口
 let Tlist_Use_Left_Window = 1 
-
-" winmanager 自动刷新目录 
-nmap <F11> :TlistUpdate<cr>:BottomExplorerWindow<cr><F5><c-w><c-b>
 
 let g:winManagerWindowLayout='TagList|FileExplorer'
 
 syntax enable
 set t_Co=256
 set background=dark
+
 " 主题
 colorscheme desert_rio
 
-"
 " cscope use quickfix
 set cscopequickfix=s-,g-,c-,d-,i-,t-,e-,f-
 nmap <Leader>dk :cs find g <c-R><c-W><CR> 
