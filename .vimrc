@@ -18,7 +18,8 @@ nmap <Leader>vd <c-W><c-V>:YcmCompleter GoTo<CR>
 nmap <Leader>sd <c-W><c-S>:YcmCompleter GoTo<CR>
 nmap <Leader>dj :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-
+let g:ycm_warning_symbol = ':('
+let g:ycm_error_symbol = '!!'
 let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_max_num_candidates = 8
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -28,6 +29,7 @@ let g:ycm_confirm_extra_conf = 0
 Plugin 'vim-scripts/delimitMate.vim'
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
+inoremap { {<CR>}<ESC>O
 
 " YCM配置自动生成
 Plugin 'rdnetto/YCM-Generator'
@@ -86,16 +88,12 @@ set expandtab
 
 " C/C++ 设置相关
 syntax on
-"set autoindent
-"set cindent
-"set showmatch
+set autoindent
+set cindent
+set showmatch
 
 " 退格键
 set backspace=indent,eol,start
-
-" 插入模式下 Ctrl + E == ESC
-imap <C-E> <ESC>
-set report=1
 
 " 忽略大小写搜索
 " set ignorecase
