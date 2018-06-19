@@ -30,6 +30,9 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 inoremap { {<CR>}<ESC>O
 
+" 选中块 然后输入{ 自动包围
+vnoremap { "zdi{<CR>}<ESC>k"zpva{==
+
 " YCM配置自动生成
 Plugin 'rdnetto/YCM-Generator'
 
@@ -142,3 +145,4 @@ set grepprg=grep\ -nr\ --exclude-dir=\.svn\ --exclude=*\.o\ --exclude=tags
 " vimrc配置分项目管理
 auto bufread /home/rio/lua-5.1.5/src/* so /home/rio/lua-5.1.5/src/.vimrc
 auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
+auto bufread /home/rio/best/server_HKMCTW/* so /home/rio/best/server_HKMCTW/.vimrc
