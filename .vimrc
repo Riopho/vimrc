@@ -64,9 +64,22 @@ map <Leader>f :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
 " 代码片段插入
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+"imap <C-J> <Plug>snipMateTrigger
+
+Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+Plugin 'tenfyzhong/CompleteParameter.vim'
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+imap <c-k> <Plug>(complete_parameter#goto_previous_parameter))
 
 " 注释
 Plugin 'scrooloose/nerdcommenter'
@@ -125,6 +138,7 @@ colorscheme desert_rio
 " cscope use quickfix
 set cscopequickfix=s-,g-,c-,d-,i-,t-,e-,f-
 nmap <Leader>dk :cs find g <c-R><c-W><CR> 
+nmap <Leader>ds :cs find t <c-R><c-W><CR> 
 
 " 刷新显示 取消搜索高亮
 nnoremap <silent> <C-p> :<C-u>nohlsearch<CR>
@@ -146,3 +160,4 @@ set grepprg=grep\ -nr\ --exclude-dir=\.svn\ --exclude=*\.o\ --exclude=tags
 auto bufread /home/rio/lua-5.1.5/src/* so /home/rio/lua-5.1.5/src/.vimrc
 auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
 auto bufread /home/rio/best/server_HKMCTW/* so /home/rio/best/server_HKMCTW/.vimrc
+auto bufread /home/rio/best/server_YUENAN/* so /home/rio/best/server_YUENAN/.vimrc
