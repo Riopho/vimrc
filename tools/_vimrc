@@ -1,0 +1,7 @@
+nmap <Leader>n :CtrlP /home/rio/trunk/src<CR>
+cs add /home/rio/trunk/src/cscope.out
+nmap <Leader>cs <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/protocol/cs/**<CR>
+nmap <Leader>ss <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/protocol/ss/**<CR>
+nmap <Leader>lua :lv /<c-R><c-W>/ /home/rio/trunk/src/gamesvr/script/**<CR>
+nmap <Leader>game <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/src/gamesvr/**<CR>
+nmap <Leader>room <c-W><c-S>:lv /<c-R><c-W>/ /home/rio/trunk/src/roomsvr/**<CR>
