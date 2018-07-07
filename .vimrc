@@ -28,10 +28,8 @@ let g:ycm_confirm_extra_conf = 0
 Plugin 'vim-scripts/delimitMate.vim'
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
-inoremap { {<CR>}<ESC>O
+autocmd filetype cpp,c,h inoremap { {<CR>}<ESC>O | vnoremap { "zdi{<CR>}<ESC>k"zpva{==
 
-" 选中块 然后输入{ 自动包围
-vnoremap { "zdi{<CR>}<ESC>k"zpva{==
 
 " YCM配置自动生成
 Plugin 'rdnetto/YCM-Generator'
@@ -90,6 +88,7 @@ let g:NERDCreateDefaultMappings = 0
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+map q: :q
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,GB2312
 
@@ -141,7 +140,7 @@ nmap <Leader>dk :cs find g <c-R><c-W><CR>
 nmap <Leader>ds :cs find t <c-R><c-W><CR> 
 
 " 刷新显示 取消搜索高亮
-nnoremap <silent> <C-p> :<C-u>nohlsearch<CR>
+nnoremap <silent> <C-p> :<C-l>nohlsearch<CR>
 
 " 缓冲区 quickfixlist locatelist跳转
 nnoremap <C-l> :bnext<CR>
