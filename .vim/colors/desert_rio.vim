@@ -88,9 +88,9 @@ hi WarningMsg	ctermfg=1
 hi WildMenu	ctermfg=0 ctermbg=3
 hi Folded	ctermfg=darkgrey ctermbg=NONE
 hi FoldColumn	ctermfg=darkgrey ctermbg=NONE
-hi DiffAdd	ctermbg=4
-hi DiffChange	ctermbg=5
-hi DiffDelete	cterm=bold ctermfg=4 ctermbg=6
+hi DiffAdd	ctermbg=23
+hi DiffChange	ctermbg=242 ctermfg=232 cterm=bold
+hi DiffDelete	cterm=bold ctermfg=4 ctermbg=52
 hi DiffText	cterm=bold ctermbg=1
 hi Comment	ctermfg=darkcyan
 hi Constant	ctermfg=brown
@@ -103,6 +103,7 @@ hi Underlined	cterm=underline ctermfg=5
 hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=7 ctermbg=1
+hi Pmenu ctermbg=247 ctermfg=232
 
 
 "vim: sw=4
