@@ -77,9 +77,11 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " 切换头文件
 Plugin 'derekwyatt/vim-fswitch'
+nnoremap <Leader>a :FSHere<CR>
 
 " include guard
 Plugin 'vim-scripts/headerguard'
+noremap <F3> :HeaderguardAdd<cr>
 
 " mark
 Plugin 'kshenoy/vim-signature'
@@ -88,10 +90,24 @@ nnoremap <Leader>m :SignatureListMarkers<CR>
 " 跳转
 Plugin 'easymotion/vim-easymotion'
 
-" workspace
-"Plugin 'thaerkh/vim-workspace'
-"nnoremap <leader>s :ToggleWorkspace<CR>
-"let g:workspace_autocreate =1
+" 包围
+Plugin 'tpope/vim-surround'
+
+" 对齐
+Plugin 'godlygeek/tabular'
+
+" svn
+Plugin 'mhinz/vim-signify'
+let g:signify_vcs_list = ['svn']
+let g:signify_realtime = 1
+
+"平滑滚动
+"Plugin 'terryma/vim-smooth-scroll'
+"noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
 
 " 缩进
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -100,6 +116,7 @@ Plugin 'easymotion/vim-easymotion'
 "let g:indent_guides_guide_size = 1            "添加行，对齐线的宽度，（1字符）
 
 " All of your Plugins must be added before the following line
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -125,18 +142,13 @@ else
     endf
 endif
 
-"Header Guard
-noremap <F3> :HeaderguardAdd<cr>
-" 防误按
-noremap q: :q
-nnoremap <Leader>a :FSHere<CR>
 
-let &termencoding=&encoding
-set fileencodings=utf-8,gbk,GB2312
 
 " set encoding=utf8,utf-8
 set helplang=cn
 set number
+let &termencoding=&encoding
+set fileencodings=utf-8,gbk,GB2312
 
 " tab 为 4 格
 set tabstop=4
@@ -165,9 +177,9 @@ set noswapfile
 
 " 如果taglist窗口是最后一个窗口，则退出vim 
 let Tlist_Exit_OnlyWindow = 1 
+
 " 在右侧窗口中显示taglist窗口
 let Tlist_Use_Left_Window = 1 
-
 let g:winManagerWindowLayout='TagList|FileExplorer'
 
 syntax enable
@@ -195,9 +207,12 @@ nnoremap <C-j> :cn<CR>
 nnoremap <Leader>k :lp<CR>
 nnoremap <Leader>j :lne<CR>
 
-" Go to home and end using capitalized directions
+" 防误按
+noremap q: :q
+
 noremap H ^
 noremap L $
+noremap K %
 
 "Show the Subversion 'blame' annotation for the current file, in a narrow
 "  window to the left of it.
