@@ -96,11 +96,6 @@ Plugin 'tpope/vim-surround'
 " 对齐
 Plugin 'godlygeek/tabular'
 
-" svn
-Plugin 'mhinz/vim-signify'
-let g:signify_vcs_list = ['svn']
-let g:signify_realtime = 1
-
 "平滑滚动
 "Plugin 'terryma/vim-smooth-scroll'
 "noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
