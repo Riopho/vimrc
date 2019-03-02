@@ -143,7 +143,8 @@ endif
 set helplang=cn
 set number
 let &termencoding=&encoding
-set fileencodings=utf-8,gbk,GB2312
+set fileencodings=utf-8,gbk,GB2312 
+"set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 
 " tab 为 4 格
 set tabstop=4
@@ -191,11 +192,12 @@ set cscopequickfix=s-,g-,c-,d-,i-,t-,e-,f-
 nnoremap <Leader>dk :cs find g <c-R><c-W><CR> 
 nnoremap <Leader>ds :cs find t <c-R><c-W><CR> 
 
-" 刷新显示 取消搜索高亮
-nnoremap <silent> <C-p> :<C-l>nohlsearch<CR>
+"刷新显示 取消搜索高亮
+"nnoremap <silent> <C-p> :<C-l>nohlsearch<CR>
 
 " 缓冲区 quickfixlist locatelist跳转
 nnoremap <C-l> :bnext<CR>
+nnoremap <C-p> :nohlsearch<CR><C-l>
 nnoremap <C-h> :bprev<CR>
 nnoremap <C-k> :cp<CR>
 nnoremap <C-j> :cn<CR>
@@ -251,20 +253,21 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 "esc
-inoremap <silent> <esc> <nop>
-inoremap <esc>[ <esc>[
+"inoremap <silent> <esc> <nop>
+"inoremap <esc>[ <esc>[
 inoremap jk <esc>
 inoremap kj <esc>
 
 set wildignore=cscope.*,*.o,*.so,*.a,*.obj,Makefile,makefile,lua,luac
 
 " alias grep
-set grepprg=grep\ -nr\ --exclude-dir=\.svn\ --exclude=*\.o\ --exclude=tags
-
+set grepprg=grep\ -nr\ --exclude-dir=.svn\ --exclude=\*.o\ --exclude=tags
+"
 " vimrc配置分项目管理
 auto bufread /home/rio/lua-5.1.5/src/* so /home/rio/lua-5.1.5/src/.vimrc
 auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
 auto bufread /home/rio/best/server_dev_20170821/* so /home/rio/best/server_dev_20170821/.vimrc
 auto bufread /home/rio/best/server_OB/* so /home/rio/best/server_OB/.vimrc
 auto bufread /home/rio/best/server_CN_OB/* so /home/rio/best/server_CN_OB/.vimrc
+auto bufread /home/rio/best/20181211_smallpackag_server/* so /home/rio/best/20181211_smallpackag_server/.vimrc
 
