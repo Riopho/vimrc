@@ -14,4 +14,4 @@ for svr in $svraray
 done 
 
 #ctags
-ctags -R
+ctags -R .

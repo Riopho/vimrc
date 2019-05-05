@@ -44,6 +44,7 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " 状态栏增强
 Plugin 'bling/vim-airline'
+Plugin 'Shougo/echodoc.vim'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_detect_modified=1
 let g:airline_section_z=''
@@ -264,10 +265,5 @@ set wildignore=cscope.*,*.o,*.so,*.a,*.obj,Makefile,makefile,lua,luac
 set grepprg=grep\ -nr\ --exclude-dir=.svn\ --exclude=\*.o\ --exclude=tags
 "
 " vimrc配置分项目管理
-auto bufread /home/rio/lua-5.1.5/src/* so /home/rio/lua-5.1.5/src/.vimrc
 auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
-auto bufread /home/rio/best/server_dev_20170821/* so /home/rio/best/server_dev_20170821/.vimrc
-auto bufread /home/rio/best/server_OB/* so /home/rio/best/server_OB/.vimrc
-auto bufread /home/rio/best/server_CN_OB/* so /home/rio/best/server_CN_OB/.vimrc
-auto bufread /home/rio/best/20181211_smallpackag_server/* so /home/rio/best/20181211_smallpackag_server/.vimrc
 
