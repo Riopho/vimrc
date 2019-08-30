@@ -13,8 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 " 自动补全
 Plugin 'Valloric/YouCompleteMe'
 "nmap <Leader>jd :YcmCompleter GoTo<CR>
-nnoremap <Leader>vd <c-W><c-V>:YcmCompleter GoTo<CR>
-nnoremap <Leader>sd <c-W><c-S>:YcmCompleter GoTo<CR>
 nnoremap <Leader>dj :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
@@ -86,6 +84,7 @@ noremap <F3> :HeaderguardAdd<cr>
 
 " mark
 Plugin 'kshenoy/vim-signature'
+set cmdheight=2
 nnoremap <Leader>m :SignatureListMarkers<CR>
 
 " 跳转
@@ -248,9 +247,43 @@ endfunction
 nnoremap gb :call <SID>svnBlame()<CR>
 command Blame call s:svnBlame()
 
+function JumpLog()
+    normal! ^"xyy
+    "echom "line: ".@x
+    if @x=~"LUA_LOG"
+        if @x=~"main\.lua"
+            let l:begin=match(@x,"\/home/")
+            let l:end=match(@x,"src/")
+            normal! ^3f|lvf:h"ayf:lvf|h"by
+            let l:GAME_PATH=strpart(@x,begin,end-begin)
+            let l:lua_file=l:GAME_PATH.@a
+            exec "split +@b "l:lua_file
+        else
+            let l:begin=match(@x,"\/home/")
+            let l:end=match(@x,"src/")
+            normal! ^3f|lvf:h"ayf:lvf|h"by
+            let l:GAME_PATH=strpart(@x,begin, 12+end-begin)
+            let l:lua_file=l:GAME_PATH."script/".@a
+            exec "split +@b "l:lua_file
+        endif
+    else
+        if @x=~"my_db_errorfb"
+            let l:begin=match(@x,"\/home/")
+            let l:end=match(@x,"MyLuaUtil\.cpp")
+            normal! ^3f|lvf:h"ayf:lvf:h"by
+            let l:GAME_PATH=strpart(@x,begin, end-begin)
+            let l:lua_file=l:GAME_PATH.@a
+            exec "split +@b "l:lua_file
+        else
+            normal! ^f|lvf:h"yyf:lvf|h"zy 
+            exec "split +@z "@y
+        endif
+    endif
+endfunction
+nnoremap <F12> :call JumpLog()<cr>
 
 " 快速打开.vimrc
-nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <Leader>ev :split $MYVIMRC<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 "esc
@@ -262,8 +295,8 @@ inoremap kj <esc>
 set wildignore=cscope.*,*.o,*.so,*.a,*.obj,Makefile,makefile,lua,luac
 
 " alias grep
-set grepprg=grep\ -nr\ --exclude-dir=.svn\ --exclude=\*.o\ --exclude=tags
-"
+set grepprg=grep\ -nrl\ --exclude-dir=.svn\ --exclude=*.o\ --exclude=tags
+
 " vimrc配置分项目管理
 auto bufread /home/rio/trunk/* so /home/rio/trunk/.vimrc
 
