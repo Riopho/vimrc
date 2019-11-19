@@ -105,18 +105,6 @@ source $ZSH/oh-my-zsh.sh
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-alias vim="/home/rio/local/vim/bin/vim"
-alias grep="grep -n --color=auto -r --exclude-dir=.svn"
-alias gdb="/usr/bin/gdbtui"
-alias dev="cd /home/rio/best/server_dev_20170821/"
-alias ob="cd /home/rio/best/server_OB/"
-alias cn="cd /home/rio/best/server_CN_OB/"
-
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then                                                      
-     export TERM='xterm-256color'
-else
-    export TERM='xterm-color'
-fi
 
 export PATH="/home/rio/local/bin:/home/rio/local/sbin:$PATH"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/rio/local/lib64:/home/rio/local/lib"
@@ -143,9 +131,13 @@ export SVN_EDITOR="/home/rio/local/bin/vim"
 #export set CXX='/home/rio/local/bin/clang++'
 
 
-#export DISTCC_HOSTS="--randomize localhost,cpp,lzo 176.122.146.188,cpp,lzo 47.106.90.35,cpp,lzo " #
-export DISTCC_LOG="/tmp/distcc`whoami`.log"
-export DISTCC_VERBOSE=1
+export PATH="/home/rio/local/bin:$PATH"
+export LD_LIBRARY_PATH="/home/rio/local/lib/:/home/rio/local/lib64:$LD_LIBRARY_PATH"
+export LANG="en_US.UTF-8"
+if [ "x$INSIDE_EMACS" = "x" ]; then
+    export TERM=xterm-256color
+else
+    export  TERM=dumb
+fi
 
-export CXX="gethost -s 192.168.1.211 distcc /home/rio/local/bin/g++"
-export CC="gethost -s 192.168.1.211 distcc /home/rio/local/bin/gcc"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
